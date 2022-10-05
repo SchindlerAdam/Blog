@@ -5,7 +5,7 @@ import BlogContext from "../context/BlogContext";
 import { useContext } from "react";
 
 
-const IndexScreen = () => {
+const IndexScreen = ({navigation}) => {
 
 
     const data = useContext(BlogContext);
