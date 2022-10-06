@@ -20,7 +20,7 @@ const App = () => {
           <Stack.Screen
             name="indexScreen"
             component={IndexScreen}
-            options = {{title: "Index"}}
+            options = {{title: "Blogs"}}
           />
 
           <Stack.Screen
