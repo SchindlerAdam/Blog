@@ -76,7 +76,17 @@ const App = () => {
           <Stack.Screen 
             name = "editScreen"
             component = {EditScreen}
-            options = {{title: "Edit"}}
+            options = {{
+              title: "Edit",
+              headerStyle: {
+                backgroundColor: "orange"
+              },
+              headerTintColor: "white",
+              headerTitleStyle: {
+                fontWeight: "bold"
+              },
+              headerTitleAlign: "center"
+            }}
           />
 
         </Stack.Navigator>

@@ -1,126 +1,30 @@
 import {React, useContext, useState} from "react";
-import {View, Text, TextInput, StyleSheet, TouchableOpacity} from "react-native";
-import { MaterialIcons } from '@expo/vector-icons'; 
-
 import { Context as blogContext } from "../context/BlogContext";
+import Form from "../components/form";
+
 
 
 const CreateBlogScreen = ({navigation}) => {
 
     const [titleInputState, setTitleInputState] = useState("");
     const [contentInputState, setContentInputState] = useState("");
-    const data = useContext(blogContext);
+    const blogContextData = useContext(blogContext);
 
     const onSubmit = () => {
-        data.actions.addNewBlogPost(data.dispatch, {title: titleInputState, content: contentInputState})
+        blogContextData.actions.addNewBlogPost(blogContextData.dispatch, {title: titleInputState, content: contentInputState})
         navigation.navigate("indexScreen");
     }
 
     return (
-        <View style = {styles.container}>
-            
-            <View style = {styles.titleContainer}>
-                <View style = {styles.titleAndIconContainer}>
-                    <Text style = {styles.titleText}>Title</Text>
-                    <MaterialIcons name="title" style = {styles.iconStyle} />
-                </View>
-                <TextInput
-                    style = {styles.textInputStyle}
-                    value = {titleInputState}
-                    multiline = {true}
-                    textAlignVertical = "top"
-                    onChangeText = {(newText) => setTitleInputState(newText)}
-                />
-            </View>
-
-            <View style = {styles.contentContainer}>
-                <View style = {styles.titleAndIconContainer}>
-                    <Text style = {styles.titleText}>Content</Text>
-                    <MaterialIcons name="edit" style = {styles.iconStyle}/>
-                </View>
-                <TextInput 
-                    style = {styles.textInputStyle}
-                    value = {contentInputState}
-                    multiline = {true}
-                    textAlignVertical = "top"
-                    onChangeText = {(newText) => setContentInputState(newText)}
-                />
-            </View>
-
-            <View style = {styles.buttonContainer}>
-                <TouchableOpacity style = {styles.buttonStyle} onPress = {() => onSubmit()}>
-                    <Text style = {styles.buttonText}>Save</Text>
-                    <MaterialIcons name="save" style = {styles.buttonIcon}/>
-                </TouchableOpacity>
-            </View>
-
-        </View>
+        <Form
+            titleState = {titleInputState}
+            setTitleState = {setTitleInputState}
+            contentState = {contentInputState}
+            setContentState = {setContentInputState}
+            submit = {onSubmit}
+        />
     );
 };
-
-
-const styles = StyleSheet.create({
-
-    container: {
-        flex: 1,
-        justifyContent: "space-evenly",
-        alignItems: "center"
-    },
-    titleContainer: {
-        width: 350,
-        marginVertical: 20
-
-        
-    },
-    titleAndIconContainer: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center"
-    },
-    titleText: {
-        fontSize: 20
-    },
-    iconStyle: {
-        fontSize: 24
-    },
-    textInputStyle: {
-        marginTop: 10,
-        width: 350,
-        height: 40,
-        borderWidth: 1,
-        borderColor: "black",
-        borderRadius: 10,
-        padding: 10
-
-    },
-    contentContainer: {
-        width: 350,
-        marginVertical: 20
-
-    },
-    buttonContainer: {
-        backgroundColor: "#75F56B",
-        justifyContent: "center",
-        width: 200,
-        height: 40,
-        borderRadius: 5
-    },
-    buttonStyle: {
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    buttonText: {
-        fontSize: 20,
-        marginRight: 2,
-
-    },
-    buttonIcon: {
-        fontSize: 20,
-        marginLeft: 2
-    }
-
-});
 
 
 export default CreateBlogScreen;
