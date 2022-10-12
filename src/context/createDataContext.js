@@ -21,8 +21,6 @@ export default (reducerFunction, actionsObject, initialState) => {
             boundedActions[key] = actionsObject[key];
         }
 
-
-
         const data = {
             currentState: state,
             actions: boundedActions,
